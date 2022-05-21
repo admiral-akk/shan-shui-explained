@@ -17,34 +17,6 @@ export class UI {
             setTimeout(() => this.autoxcroll(v), 2000);
         }
     }
-    rstyle(id: string, b: boolean) {
-        var a = b ? 0.1 : 0.0;
-        document
-            .getElementById(id)!
-            .setAttribute(
-                "style",
-                "\
-  width: 32px; \
-  text-align: center;\
-  top: 0px;\
-  color:rgba(0,0,0,0.4);\
-  display:table;\
-  cursor: pointer;\
-  border: 1px solid rgba(0,0,0,0.4);\
-  background-color:rgba(0,0,0," +
-                a +
-                ");\
-" +
-                "height:" +
-                this.MEM.windy +
-                "px"
-            );
-        document.getElementById(id + ".t")!.setAttribute(
-            "style",
-            "vertical-align:middle; display:table-cell"
-            //"position:absolute; top:"+(MEM.windy/2-20)+"px; left:"+(MEM.windx+20)+"px;"
-        );
-    }
     toggleVisible(id: string) {
         var v = document.getElementById(id)!.style.display == "none";
         document.getElementById(id)!.style.display = v ? "block" : "none";

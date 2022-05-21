@@ -2,12 +2,17 @@ body {
     margin: 0px
 }
 
+:root {
+    --hover-bg-color: rgba(0, 0, 0, 0.1);
+}
+
 #SETTING {
     position: fixed;
     z-index: 1000;
     left: 40px;
     top: 3px;
 }
+
 
 #SET_BTN {
     width: 32px;
@@ -28,7 +33,7 @@ body {
     size: 4px;
 }
 
-#SOURCE_BTN {
+div#SOURCE_BTN {
     position: fixed;
     z-index: 1000;
     left: 77px;
@@ -42,10 +47,15 @@ body {
     cursor: pointer;
 }
 
+div#SOURCE_BTN:hover {
+    background-color: var(--hover-bg-color);
+}
+
 #SOURCE_BTN>div {
     display: table-cell;
     vertical-align: middle;
 }
+
 
 #SOURCE_BTN\.t {
     size: 4px;
@@ -62,8 +72,50 @@ body>table {
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
 
+#L {
+    height: 800px;
+    background-color: rgba(0, 0, 0, 0);
+}
+
+#R {
+    height: 800px;
+    background-color: rgba(0, 0, 0, 0);
+}
+
+#L:hover {
+    width: 32px;
+    text-align: center;
+    top: 0px;
+    color: rgba(0, 0, 0, 0.4);
+    display: table;
+    cursor: pointer;
+    border: 1px solid rgba(0, 0, 0, 0.4);
+    background-color: var(--hover-bg-color);
+}
+
 #L\.t>font {
     size: 6px;
+}
+
+#R:hover {
+    width: 32px;
+    text-align: center;
+    top: 0px;
+    color: rgba(0, 0, 0, 0.4);
+    display: table;
+    cursor: pointer;
+    border: 1px solid rgba(0, 0, 0, 0.4);
+    background-color: var(--hover-bg-color);
+}
+
+#L\.t {
+    vertical-align: middle;
+    display: table-cell
+}
+
+#R\.t {
+    vertical-align: middle;
+    display: table-cell
 }
 
 #R\.t>font {
