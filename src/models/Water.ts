@@ -1,6 +1,6 @@
-import { PerlinNoise } from "./PerlinNoise";
-import { Point } from "./Point";
-import { stroke } from "./Stroke";
+import { PerlinNoise } from "../PerlinNoise";
+import { Point } from "../Point";
+import { stroke } from "../Stroke";
 
 export function water(xoff: number, yoff: number, seed: number, Noise: PerlinNoise, args?: any): string {
     var args = args != undefined ? args : {};

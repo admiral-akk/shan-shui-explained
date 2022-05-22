@@ -1,11 +1,11 @@
-import { div } from "./Div";
-import { PerlinNoise } from "./PerlinNoise";
-import { Point } from "./Point";
-import { PolyTools } from "./PolyTools";
-import { stroke } from "./Stroke";
-import { texture } from "./Texture";
+import { div } from "../Div";
+import { PerlinNoise } from "../PerlinNoise";
+import { Point } from "../Point";
+import { PolyTools } from "../PolyTools";
+import { stroke } from "../Stroke";
+import { texture } from "../Texture";
 import { Tree } from "./Tree";
-import { loopNoise, normRand, poly, randChoice } from "./Utils";
+import { loopNoise, normRand, poly, randChoice } from "../Utils";
 import { Arch } from "./Arch";
 
 export class Mount {

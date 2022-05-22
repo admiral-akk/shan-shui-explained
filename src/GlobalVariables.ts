@@ -1,23 +1,23 @@
-import { Arch } from "./Arch";
+import { Arch } from "./models/Arch";
 import { blob } from "./Blob";
 import { div } from "./Div";
 import { download } from "./Downloader";
 import { Distance } from "./GeometryUtils";
-import { Man } from "./Man";
+import { Man } from "./models/Man";
 import { Memory } from "./Memory";
-import { Mount } from "./Mount";
+import { Mount } from "./models/Mount";
 import { MountPlanner } from "./MountPlanner";
 import { PerlinNoise } from "./PerlinNoise";
 import { Point } from "./Point";
 import { PolyTools } from "./PolyTools";
 import { stroke } from "./Stroke";
 import { texture } from "./Texture";
-import { Tree } from "./Tree";
+import { Tree } from "./models/Tree";
 import { UI } from "./UI";
 import { UniformRNG } from "./UniformRNG";
 import { Update } from "./Update";
 import { bezmh, loopNoise, mapval, normRand, poly, randChoice, randGaussian, unNan, wtrand } from "./Utils";
-import { water } from "./Water";
+import { water } from "./models/Water";
 
 declare global {
     interface Window {

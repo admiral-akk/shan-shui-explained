@@ -1,10 +1,10 @@
-import { div } from "./Div";
-import { PerlinNoise } from "./PerlinNoise";
-import { Point } from "./Point";
-import { PolyTools } from "./PolyTools";
-import { stroke } from "./Stroke";
-import { texture } from "./Texture";
-import { normRand, poly, randChoice, wtrand } from "./Utils";
+import { div } from "../Div";
+import { PerlinNoise } from "../PerlinNoise";
+import { Point } from "../Point";
+import { PolyTools } from "../PolyTools";
+import { stroke } from "../Stroke";
+import { texture } from "../Texture";
+import { normRand, poly, randChoice, wtrand } from "../Utils";
 import { Man } from "./Man";
 
 export class Arch {

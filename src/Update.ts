@@ -1,10 +1,10 @@
-import { Arch } from "./Arch";
+import { Arch } from "./models/Arch";
 import { Memory } from "./Memory";
-import { Mount } from "./Mount";
+import { Mount } from "./models/Mount";
 import { MountPlanner } from "./MountPlanner";
 import { PerlinNoise } from "./PerlinNoise";
 import { randChoice } from "./Utils";
-import { water } from "./Water";
+import { water } from "./models/Water";
 
 export class Update {
     mouseX = 0;

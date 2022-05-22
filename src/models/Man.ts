@@ -1,9 +1,9 @@
-import { div } from "./Div";
-import { PerlinNoise } from "./PerlinNoise";
-import { Point } from "./Point";
-import { stroke } from "./Stroke";
-import { distance, poly, normRand, bezmh } from "./Utils";
-import { PolyTools } from "./PolyTools";
+import { div } from "../Div";
+import { PerlinNoise } from "../PerlinNoise";
+import { Point } from "../Point";
+import { stroke } from "../Stroke";
+import { distance, poly, normRand, bezmh } from "../Utils";
+import { PolyTools } from "../PolyTools";
 
 export class Man {
 

@@ -1,10 +1,10 @@
-import { blob } from "./Blob";
-import { div } from "./Div";
-import { PerlinNoise } from "./PerlinNoise";
-import { Point, Triangle } from "./Point";
-import { PolyTools } from "./PolyTools";
-import { stroke } from "./Stroke";
-import { distance, loopNoise, normRand, poly, randChoice, randGaussian } from "./Utils";
+import { blob } from "../Blob";
+import { div } from "../Div";
+import { PerlinNoise } from "../PerlinNoise";
+import { Point, Triangle } from "../Point";
+import { PolyTools } from "../PolyTools";
+import { stroke } from "../Stroke";
+import { distance, loopNoise, normRand, poly, randChoice, randGaussian } from "../Utils";
 
 export class Tree {
 
