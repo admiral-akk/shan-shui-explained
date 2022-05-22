@@ -75,7 +75,7 @@ export class Arch {
             tex: tex,
             wid: 1,
             len: 0.25,
-            col: (x: number) => {
+            color: (x: number) => {
                 return (
                     "rgba(120,120,120," + (0.3 + Math.random() * 0.3).toFixed(3) + ")"
                 );
@@ -83,7 +83,7 @@ export class Arch {
             dis: () => {
                 return wtrand(a => a * a);
             },
-            noi: (x: number) => {
+            noise: (x: number) => {
                 return 5;
             },
         },

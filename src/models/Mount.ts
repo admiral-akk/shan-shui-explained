@@ -800,7 +800,7 @@ export class Mount {
             tex: tex,
             wid: 3,
             sha: sha,
-            col: function (x: number) {
+            color: function (x: number) {
                 return (
                     "rgba(180,180,180," + (0.3 + Math.random() * 0.3).toFixed(3) + ")"
                 );

@@ -1,9 +1,9 @@
 import { PerlinNoise } from "./PerlinNoise";
 import { Point } from "./geometry/Point";
 import { stroke } from "./Stroke";
+import { Args } from "./brush/Args";
 
-export function texture(ptlist: Point[][], args: any, noise: PerlinNoise): Point[][] | string {
-    var args = args != undefined ? args : {};
+export function texture(ptlist: Point[][], args: Args, noise: PerlinNoise): Point[][] | string {
     var xof = args.xof != undefined ? args.xof : 0;
     var yof = args.yof != undefined ? args.yof : 0;
     var tex = args.tex != undefined ? args.tex : 400;
@@ -12,14 +12,14 @@ export function texture(ptlist: Point[][], args: any, noise: PerlinNoise): Point
     var sha = args.sha != undefined ? args.sha : 0;
     var ret = args.ret != undefined ? args.ret : 0;
     var noi =
-        args.noi != undefined
-            ? args.noi
+        args.noise != undefined
+            ? args.noise
             : function (x: number) {
                 return 30 / x;
             };
     var col =
-        args.col != undefined
-            ? args.col
+        args.color != undefined
+            ? args.color
             : function (x: number) {
                 return "rgba(100,100,100," + (Math.random() * 0.3).toFixed(3) + ")";
             };
