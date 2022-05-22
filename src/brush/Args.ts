@@ -1,5 +1,6 @@
 import { Point } from "../geometry/Point";
 
+
 export class Args {
     len?: number;
     wid?: number;
