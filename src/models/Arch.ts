@@ -1,9 +1,9 @@
 import { div } from "../geometry/Div";
-import { PerlinNoise } from "../PerlinNoise";
+import { PerlinNoise } from "../noise/PerlinNoise";
 import { Point } from "../geometry/Point";
 import { PolyTools } from "../geometry/PolyTools";
-import { stroke } from "../Stroke";
-import { texture } from "../Texture";
+import { stroke } from "../brush/Stroke";
+import { texture } from "../brush/Texture";
 import { normRand, poly, randChoice, wtrand } from "../Utils";
 import { Man } from "./Man";
 import { Args } from "../brush/Args";

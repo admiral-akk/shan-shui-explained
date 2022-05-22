@@ -1,6 +1,6 @@
-import { download } from "./Downloader";
-import { Memory } from "./Memory";
-import { Update } from "./Update";
+import { download } from "../Downloader";
+import { Memory } from "../Memory";
+import { Update } from "../Update";
 
 export class UI {
     constructor(private MEM: Memory, private update: Update, seed: string) {

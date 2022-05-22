@@ -1,5 +1,5 @@
 import { Memory } from "./Memory";
-import { PerlinNoise } from "./PerlinNoise";
+import { PerlinNoise } from "./noise/PerlinNoise";
 
 export class MountPlanner {
     constructor(private Noise: PerlinNoise, private MEM: Memory) { }

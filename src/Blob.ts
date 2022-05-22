@@ -1,4 +1,4 @@
-import { PerlinNoise } from "./PerlinNoise";
+import { PerlinNoise } from "./noise/PerlinNoise";
 import { Point } from "./geometry/Point";
 import { loopNoise, poly } from "./Utils";
 import { Args } from "./brush/Args";

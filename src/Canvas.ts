@@ -1,4 +1,4 @@
-import { PerlinNoise } from "./PerlinNoise";
+import { PerlinNoise } from "./noise/PerlinNoise";
 
 export class Canvas {
     constructor(Noise: PerlinNoise) {

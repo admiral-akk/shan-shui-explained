@@ -1,7 +1,7 @@
-import { PerlinNoise } from "./PerlinNoise";
-import { Point } from "./geometry/Point";
-import { poly } from "./Utils";
-import { Args } from "./brush/Args";
+import { PerlinNoise } from "../noise/PerlinNoise";
+import { Point } from "../geometry/Point";
+import { poly } from "../Utils";
+import { Args } from "./Args";
 
 export function stroke(ptlist: Point[], args: Args, noise: PerlinNoise): string {
     var xof = args.xof != undefined ? args.xof : 0;

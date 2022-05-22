@@ -1,4 +1,4 @@
-import { UniformRNG } from "./UniformRNG";
+import { UniformRNG } from "../global/UniformRNG";
 
 //https://raw.githubusercontent.com/processing/p5.js/master/src/math/noise.js
 export class PerlinNoise {

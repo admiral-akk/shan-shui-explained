@@ -1,7 +1,7 @@
 import { div } from "../geometry/Div";
-import { PerlinNoise } from "../PerlinNoise";
+import { PerlinNoise } from "../noise/PerlinNoise";
 import { Point } from "../geometry/Point";
-import { stroke } from "../Stroke";
+import { stroke } from "../brush/Stroke";
 import { distance, poly, normRand, bezmh } from "../Utils";
 import { PolyTools } from "../geometry/PolyTools";
 import { Args } from "../brush/Args";

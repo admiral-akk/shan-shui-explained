@@ -1,7 +1,7 @@
 import { parseQueryParams } from "./ParseArgs";
-import { InitializeGlobalVariables } from "./GlobalVariables"
-import { UniformRNG } from "./UniformRNG";
-import { PerlinNoise } from "./PerlinNoise";
+import { InitializeGlobalVariables } from "./global/GlobalVariables"
+import { UniformRNG } from "./global/UniformRNG";
+import { PerlinNoise } from "./noise/PerlinNoise";
 import { PolyTools } from "./geometry/PolyTools";
 import { Tree } from "./models/Tree";
 import { Arch } from "./models/Arch";
@@ -10,7 +10,7 @@ import { Man } from "./models/Man";
 import { MountPlanner } from "./MountPlanner";
 import { Memory } from "./Memory";
 import { Update } from "./Update";
-import { UI } from "./UI";
+import { UI } from "./global/UI";
 import { Canvas } from "./Canvas";
 
 const rng = new UniformRNG();
@@ -32,4 +32,4 @@ const ui = new UI(memory, update, seed);
 const canvas = new Canvas(perlin);
 
 // We add global variables at the end to ensure that we don't inadvertidly depend on them in our Typescript.
-InitializeGlobalVariables(ui);
+InitializeGlobalVariables(rng, ui);

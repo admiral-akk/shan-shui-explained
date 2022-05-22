@@ -1,7 +1,7 @@
-import { PerlinNoise } from "./PerlinNoise";
-import { Point } from "./geometry/Point";
+import { PerlinNoise } from "../noise/PerlinNoise";
+import { Point } from "../geometry/Point";
 import { stroke } from "./Stroke";
-import { Args } from "./brush/Args";
+import { Args } from "./Args";
 
 export function texture(ptlist: Point[][], args: Args, noise: PerlinNoise): Point[][] | string {
     var xof = args.xof != undefined ? args.xof : 0;
