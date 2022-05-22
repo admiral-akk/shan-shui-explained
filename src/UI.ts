@@ -1,8 +1,26 @@
+import { download } from "./Downloader";
 import { Memory } from "./Memory";
 import { Update } from "./Update";
 
 export class UI {
-    constructor(private MEM: Memory, private update: Update) { }
+    constructor(private MEM: Memory, private update: Update, seed: string) {
+        window.addEventListener("scroll", (e: Event) => {
+            document.getElementById("SETTING")!.style.left = Math.max(
+                4,
+                40 - window.scrollX
+            ) + "px";
+        });
+
+        MEM.lasttick = new Date().getTime();
+        (document.getElementById("INP_SEED") as HTMLInputElement).value = seed;
+        document
+            .getElementById("BG")!
+            .setAttribute("style", "width:" + MEM.windx + "px");
+        update.update();
+        document.body.scrollTo(0, 0);
+        console.log(["SCROLLX", window.scrollX]);
+        this.present();
+    }
     xcroll(v: number) {
         this.MEM.cursx += v;
         if (this.update.needupdate()) {
@@ -45,6 +63,10 @@ export class UI {
         var u = window.location.href.split("?")[0];
         window.location.href = u + "?seed=" + s;
         //window.location.reload(true)
+    }
+
+    download() {
+        download('' + (Math.random()) + '.svg', document.getElementById('BG')!.innerHTML);
     }
     btnHoverCol = "rgba(0,0,0,0.1)";
 }

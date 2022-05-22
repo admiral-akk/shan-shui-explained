@@ -1,5 +1,4 @@
 <script>var exports = {};</script>
-<script src="./dist/main.js"></script>
 <link rel="stylesheet" href="index.css">
 
 <body>
@@ -9,14 +8,6 @@
       <div>
         <font id="SET_BTN.t"> &#x2630; </font>
       </div>
-      <script>
-        window.addEventListener("scroll", function (e) {
-          document.getElementById("SETTING").style.left = Math.max(
-            4,
-            40 - window.scrollX
-          );
-        });
-      </script>
     </div>
     <div style="height:4px"></div>
     <div id="MENU">
@@ -67,7 +58,7 @@
         <tr>
           <td>
             <button title="WARNING: This may take a while..." type="button" id="dwn-btn" value="Download as SVG"
-              onclick="download(''+(Math.random())+'.svg', document.getElementById('BG').innerHTML);">
+              onclick="UI.download();">
               Download as .SVG
             </button>
           </td>
@@ -103,18 +94,6 @@
 
       <td>
         <div id="BG">
-          <script>
-            MEM.lasttick = new Date().getTime();
-            document.getElementById("INP_SEED").value = SEED;
-            document
-              .getElementById("BG")
-              .setAttribute("style", "width:" + MEM.windx + "px");
-            update();
-            document.body.scrollTo(0, 0);
-            console.log(["SCROLLX", window.scrollX]);
-            UI.present();
-            //draw();
-          </script>
         </div>
       </td>
 
@@ -129,6 +108,7 @@
   </table>
 </body>
 <canvas id="bgcanv" width="512" height="512" hidden> </canvas>
+<script src="./dist/main.js"></script>
 <script>
   var canvas = document.getElementById("bgcanv");
   var ctx = canvas.getContext("2d");
