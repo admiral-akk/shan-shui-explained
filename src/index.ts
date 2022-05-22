@@ -32,4 +32,4 @@ const ui = new UI(memory, update, seed);
 const canvas = new Canvas(perlin);
 
 // We add global variables at the end to ensure that we don't inadvertidly depend on them in our Typescript.
-InitializeGlobalVariables(rng, seed, perlin, polyTools, tree, mount, arch, man, mountPlanner, memory, update, ui);
+InitializeGlobalVariables(ui);
