@@ -1,3 +1,4 @@
+import { Args } from "../brush/Args";
 import { Area, SegmentLengths, ToLine } from "./GeometryUtils";
 import { AssertPoint, AssertTriangle, LineSegment, Point, Triangle } from "./Point";
 
@@ -148,8 +149,7 @@ export class PolyTools {
     convex: boolean = false;
     optimize: boolean = true;
 
-    triangulate(plist: Point[], args: any): Triangle[] {
-        var args = args != undefined ? args : {};
+    triangulate(plist: Point[], args: Args): Triangle[] {
         this.area = args.area != undefined ? args.area : 100;
         this.convex = args.convex != undefined ? args.convex : false;
         this.optimize = args.optimize != undefined ? args.optimize : true;

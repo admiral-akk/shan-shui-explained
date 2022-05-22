@@ -12,6 +12,9 @@ export class Args {
     sha?: number;
     fil?: string;
     str?: string;
+    area?: number;
+    convex?: boolean;
+    optimize?: boolean;
     fun?: (x: number) => number;
     dis?: () => number;
     color?: (x: number) => string;
