@@ -1,3 +1,4 @@
+import { Args } from "./brush/Args";
 import { Point } from "./geometry/Point";
 import { PolyTools } from "./geometry/PolyTools";
 
@@ -100,8 +101,7 @@ export function bezmh(polyTool: PolyTools, P: Point[], w?: number) {
     return plist;
 }
 
-export function poly(plist: Point[], args: any): string {
-    var args = args != undefined ? args : {};
+export function poly(plist: Point[], args: Args): string {
     var xof = args.xof != undefined ? args.xof : 0;
     var yof = args.yof != undefined ? args.yof : 0;
     var fil = args.fil != undefined ? args.fil : "rgba(0,0,0,0)";

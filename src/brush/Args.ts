@@ -10,6 +10,8 @@ export class Args {
     out?: number;
     tex?: number;
     sha?: number;
+    fil?: string;
+    str?: string;
     fun?: (x: number) => number;
     dis?: () => number;
     color?: (x: number) => string;
