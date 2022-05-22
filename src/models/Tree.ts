@@ -1,4 +1,4 @@
-import { blob } from "../Blob";
+import { blob } from "../brush/Blob";
 import { div } from "../geometry/Div";
 import { PerlinNoise } from "../noise/PerlinNoise";
 import { Point, Triangle } from "../geometry/Point";

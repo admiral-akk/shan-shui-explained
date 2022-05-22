@@ -1,7 +1,7 @@
-import { PerlinNoise } from "./noise/PerlinNoise";
-import { Point } from "./geometry/Point";
-import { loopNoise, poly } from "./Utils";
-import { Args } from "./brush/Args";
+import { PerlinNoise } from "../noise/PerlinNoise";
+import { Point } from "../geometry/Point";
+import { loopNoise, poly } from "../Utils";
+import { Args } from "./Args";
 
 export function blob(x: number, y: number, args: Args, noise: PerlinNoise): string | Point[] {
     var len = args.len != undefined ? args.len : 20;
