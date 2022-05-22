@@ -7,10 +7,11 @@ import { texture } from "../Texture";
 import { Tree } from "./Tree";
 import { loopNoise, normRand, poly, randChoice } from "../Utils";
 import { Arch } from "./Arch";
+import { Args } from "../brush/Args";
 
 export class Mount {
     constructor(private Noise: PerlinNoise, private Tree: Tree, private Arch: Arch, private PolyTools: PolyTools) { }
-    foot(ptlist: Point[][], args: any): Point[][] | string {
+    foot(ptlist: Point[][], args: Args): Point[][] | string {
         var args = args != undefined ? args : {};
         var xof = args.xof != undefined ? args.xof : 0;
         var yof = args.yof != undefined ? args.yof : 0;
@@ -103,8 +104,7 @@ export class Mount {
         }
     }
 
-    mountain(xoff: number, yoff: number, seed: number, args?: any) {
-        var args = args != undefined ? args : {};
+    mountain(xoff: number, yoff: number, seed: number, args: Args = new Args()) {
         var hei = args.hei != undefined ? args.hei : 100 + Math.random() * 400;
         var wid = args.wid != undefined ? args.wid : 400 + Math.random() * 200;
         var tex = args.tex != undefined ? args.tex : 200;
@@ -257,7 +257,7 @@ export class Mount {
                     var bp = 1;
                     return this.Tree.tree03(x + xoff, y + yoff, {
                         hei: ht,
-                        ben: function (x: number) {
+                        bend: function (x: number) {
                             return Math.pow(x * bc, bp);
                         },
                         col:
@@ -376,7 +376,7 @@ export class Mount {
         }
     };
 
-    flatMount(xoff: number, yoff: number, seed: number, args: any) {
+    flatMount(xoff: number, yoff: number, seed: number, args: Args) {
         var args = args != undefined ? args : {};
         var hei = args.hei != undefined ? args.hei : 40 + Math.random() * 400;
         var wid = args.wid != undefined ? args.wid : 400 + Math.random() * 200;
@@ -664,8 +664,7 @@ export class Mount {
         return canv;
     };
 
-    distMount(xoff: number, yoff: number, seed: number, args?: any) {
-        var args = args != undefined ? args : {};
+    distMount(xoff: number, yoff: number, seed: number, args: Args = new Args()) {
         var hei = args.hei != undefined ? args.hei : 300;
         var len = args.len != undefined ? args.len : 2000;
         var seg = args.seg != undefined ? args.seg : 5;
@@ -728,7 +727,7 @@ export class Mount {
         return canv;
     };
 
-    rock(xoff: number, yoff: number, seed: number, args: any): string {
+    rock(xoff: number, yoff: number, seed: number, args: Args): string {
         var args = args != undefined ? args : {};
         var hei = args.hei != undefined ? args.hei : 80;
         var wid = args.wid != undefined ? args.wid : 100;

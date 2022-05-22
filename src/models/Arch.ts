@@ -6,6 +6,7 @@ import { stroke } from "../Stroke";
 import { texture } from "../Texture";
 import { normRand, poly, randChoice, wtrand } from "../Utils";
 import { Man } from "./Man";
+import { Args } from "../brush/Args";
 
 export class Arch {
 
@@ -28,7 +29,7 @@ export class Arch {
         return ptlist;
     };
 
-    hut(xoff: number, yoff: number, args: any) {
+    hut(xoff: number, yoff: number, args: Args) {
         var args = args != undefined ? args : {};
         var hei = args.hei != undefined ? args.hei : 40;
         var wid = args.wid != undefined ? args.wid : 180;
@@ -96,7 +97,7 @@ export class Arch {
         return canv;
     };
 
-    box(xoff: number, yoff: number, args: any) {
+    box(xoff: number, yoff: number, args: Args) {
         var args = args != undefined ? args : {};
         var hei = args.hei != undefined ? args.hei : 20;
         var wid = args.wid != undefined ? args.wid : 120;
@@ -177,7 +178,7 @@ export class Arch {
         return canv;
     };
 
-    deco(style: number, args: any) {
+    deco(style: number, args: Args) {
         var args = args != undefined ? args : {};
         var pul = args.pul != undefined ? args.pul : [0, 0];
         var pur = args.pur != undefined ? args.pur : [0, 100];
@@ -241,7 +242,7 @@ export class Arch {
         return plist;
     };
 
-    rail(xoff: number, yoff: number, seed: number, args: any) {
+    rail(xoff: number, yoff: number, seed: number, args: Args) {
         var args = args != undefined ? args : {};
         var hei = args.hei != undefined ? args.hei : 20;
         var wid = args.wid != undefined ? args.wid : 180;
@@ -329,7 +330,7 @@ export class Arch {
         return canv;
     };
 
-    roof(xoff: number, yoff: number, args: any) {
+    roof(xoff: number, yoff: number, args: Args) {
         var args = args != undefined ? args : {};
         var hei = args.hei != undefined ? args.hei : 20;
         var wid = args.wid != undefined ? args.wid : 120;
@@ -448,7 +449,7 @@ export class Arch {
         return canv;
     };
 
-    pagroof(xoff: number, yoff: number, args: any) {
+    pagroof(xoff: number, yoff: number, args: Args) {
         var args = args != undefined ? args : {};
         var hei = args.hei != undefined ? args.hei : 20;
         var wid = args.wid != undefined ? args.wid : 120;
@@ -493,7 +494,7 @@ export class Arch {
         return canv;
     };
 
-    arch01(xoff: number, yoff: number, seed: number, args: any) {
+    arch01(xoff: number, yoff: number, seed: number, args: Args) {
         var args = args != undefined ? args : {};
         var hei = args.hei != undefined ? args.hei : 70;
         var wid = args.wid != undefined ? args.wid : 180;
@@ -552,7 +553,7 @@ export class Arch {
         return canv;
     };
 
-    arch02(xoff: number, yoff: number, seed: number, args: any) {
+    arch02(xoff: number, yoff: number, seed: number, args: Args) {
         var args = args != undefined ? args : {};
         var hei = args.hei != undefined ? args.hei : 10;
         var wid = args.wid != undefined ? args.wid : 50;
@@ -594,24 +595,20 @@ export class Arch {
                     tra: false,
                 })
                 : "";
-            var pla = undefined;
-            if (sto == 1 && Math.random() < 1 / 3) {
-                pla = [1, "Pizza Hut"];
-            }
             canv += this.roof(xoff, yoff - hoff - hei, {
                 hei: hei,
                 wid: wid * Math.pow(0.9, i),
                 rot: rot,
                 wei: 1.5,
                 per: per,
-                pla: pla,
+                pla: (sto == 1 && Math.random() < 1 / 3) ? [1, "Pizza Hut"] : undefined,
             });
 
             hoff += hei * 1.5;
         }
         return canv;
     };
-    arch03(xoff: number, yoff: number, seed: number, args: any) {
+    arch03(xoff: number, yoff: number, seed: number, args: Args) {
         var args = args != undefined ? args : {};
         var hei = args.hei != undefined ? args.hei : 10;
         var wid = args.wid != undefined ? args.wid : 50;
@@ -655,7 +652,7 @@ export class Arch {
         }
         return canv;
     };
-    arch04(xoff: number, yoff: number, seed: number, args: any) {
+    arch04(xoff: number, yoff: number, seed: number, args: Args) {
         var args = args != undefined ? args : {};
         var hei = args.hei != undefined ? args.hei : 15;
         var wid = args.wid != undefined ? args.wid : 30;
@@ -700,8 +697,7 @@ export class Arch {
         return canv;
     };
 
-    boat01(xoff: number, yoff: number, seed: number, args: any) {
-        var args = args != undefined ? args : {};
+    boat01(xoff: number, yoff: number, seed: number, args: Args) {
         var len = args.len != undefined ? args.len : 120;
         var sca = args.sca != undefined ? args.sca : 1;
         var fli = args.fli != undefined ? args.fli : false;
@@ -713,7 +709,7 @@ export class Arch {
             hat: (p1: Point, p2: Point, arg: any) => this.Man.hat02(p1, p2, arg),
             sca: 0.5 * sca,
             fli: !fli,
-            len: [0, 30, 20, 30, 10, 30, 30, 30, 30],
+            lens: [0, 30, 20, 30, 10, 30, 30, 30, 30],
         });
 
         var plist1 = [];
@@ -742,8 +738,7 @@ export class Arch {
         return canv;
     };
 
-    transmissionTower01(xoff: number, yoff: number, seed: number, args?: any) {
-        var args = args != undefined ? args : {};
+    transmissionTower01(xoff: number, yoff: number, seed: number, args: Args = new Args()) {
         var hei = args.hei != undefined ? args.hei : 100;
         var wid = args.wid != undefined ? args.wid : 20;
 

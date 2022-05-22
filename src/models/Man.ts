@@ -4,6 +4,7 @@ import { Point } from "../geometry/Point";
 import { stroke } from "../Stroke";
 import { distance, poly, normRand, bezmh } from "../Utils";
 import { PolyTools } from "../geometry/PolyTools";
+import { Args } from "../brush/Args";
 
 export class Man {
 
@@ -90,7 +91,7 @@ export class Man {
         });
     };
 
-    hat01(p0: Point, p1: Point, args: any) {
+    hat01(p0: Point, p1: Point, args: Args) {
         var args = args != undefined ? args : {};
         var fli = args.fli != undefined ? args.fli : false;
 
@@ -132,7 +133,7 @@ export class Man {
         return canv;
     };
 
-    hat02(p0: Point, p1: Point, args: any) {
+    hat02(p0: Point, p1: Point, args: Args) {
         var args = args != undefined ? args : {};
         var fli = args.fli != undefined ? args.fli : false;
 
@@ -167,7 +168,7 @@ export class Man {
         return canv;
     };
 
-    stick01(p0: Point, p1: Point, args: any) {
+    stick01(p0: Point, p1: Point, args: Args) {
         var args = args != undefined ? args : {};
         var fli = args.fli != undefined ? args.fli : false;
 
@@ -200,10 +201,9 @@ export class Man {
     //      /3
     //     4
 
-    man(xoff: number, yoff: number, args: any) {
-        var args = args != undefined ? args : {};
+    man(xoff: number, yoff: number, args: Args) {
         var sca = args.sca != undefined ? args.sca : 0.5;
-        var hat = args.hat != undefined ? args.hat : (p0: Point, p1: Point, args: any) => this.hat01(p0, p1, args);
+        var hat = args.hat != undefined ? args.hat : (p0: Point, p1: Point, args: Args) => this.hat01(p0, p1, args);
         var ite =
             args.ite != undefined
                 ? args.ite
@@ -212,8 +212,8 @@ export class Man {
                 };
         var fli = args.fli != undefined ? args.fli : true;
         var ang =
-            args.ang != undefined
-                ? args.ang
+            args.angs != undefined
+                ? args.angs
                 : [
                     0,
                     -Math.PI / 2,
@@ -226,7 +226,7 @@ export class Man {
                     -Math.PI / 4,
                 ];
         var len =
-            args.len != undefined ? args.len : [0, 30, 20, 30, 30, 30, 30, 30, 30];
+            args.lens != undefined ? args.lens : [0, 30, 20, 30, 30, 30, 30, 30, 30];
 
         len = len.map((v: number) => {
             return v * sca;

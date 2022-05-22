@@ -1,9 +1,9 @@
 import { PerlinNoise } from "../PerlinNoise";
 import { Point } from "../geometry/Point";
 import { stroke } from "../Stroke";
+import { Args } from "../brush/Args";
 
-export function water(xoff: number, yoff: number, seed: number, Noise: PerlinNoise, args?: any): string {
-    var args = args != undefined ? args : {};
+export function water(xoff: number, yoff: number, seed: number, Noise: PerlinNoise, args: Args = new Args()): string {
     var hei = args.hei != undefined ? args.hei : 2;
     var len = args.len != undefined ? args.len : 800;
     var clu = args.clu != undefined ? args.clu : 10;

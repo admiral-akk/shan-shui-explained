@@ -5,11 +5,12 @@ import { Point, Triangle } from "../geometry/Point";
 import { PolyTools } from "../geometry/PolyTools";
 import { stroke } from "../Stroke";
 import { distance, loopNoise, normRand, poly, randChoice, randGaussian } from "../Utils";
+import { Args } from "../brush/Args";
 
 export class Tree {
 
     constructor(private Noise: PerlinNoise, private PolyTools: PolyTools) { }
-    tree01(x: number, y: number, args: any): string {
+    tree01(x: number, y: number, args: Args): string {
         var args = args != undefined ? args : {};
         var hei = args.hei != undefined ? args.hei : 50;
         var wid = args.wid != undefined ? args.wid : 3;
@@ -69,8 +70,7 @@ export class Tree {
             poly(line2, { fil: "none", str: col, wid: 1.5 });
         return canv;
     };
-    tree02(x: number, y: number, args?: any): string {
-        var args = args != undefined ? args : {};
+    tree02(x: number, y: number, args: Args = new Args()): string {
         var hei = args.hei != undefined ? args.hei : 16;
         var wid = args.wid != undefined ? args.wid : 8;
         var clu = args.clu != undefined ? args.clu : 5;
@@ -108,13 +108,13 @@ export class Tree {
         }
         return canv;
     };
-    tree03(x: number, y: number, args: any): string {
+    tree03(x: number, y: number, args: Args): string {
         var args = args != undefined ? args : {};
         var hei = args.hei != undefined ? args.hei : 50;
         var wid = args.wid != undefined ? args.wid : 5;
         var ben =
-            args.ben != undefined
-                ? args.ben
+            args.bend != undefined
+                ? args.bend
                 : function (x: number) {
                     return 0;
                 };
@@ -186,7 +186,7 @@ export class Tree {
         return canv;
     };
 
-    branch(args: any): [Point[], Point[]] {
+    branch(args: Args): [Point[], Point[]] {
         var args = args != undefined ? args : {};
         var hei = args.hei != undefined ? args.hei : 300;
         var wid = args.wid != undefined ? args.wid : 6;
@@ -258,13 +258,12 @@ export class Tree {
         return [trlist1, trlist2];
     };
 
-    twig(tx: number, ty: number, dep: number, args: any) {
-        var args = args != undefined ? args : {};
+    twig(tx: number, ty: number, dep: number, args: Args) {
         var dir = args.dir != undefined ? args.dir : 1;
         var sca = args.sca != undefined ? args.sca : 1;
         var wid = args.wid != undefined ? args.wid : 1;
         var ang = args.ang != undefined ? args.ang : 0;
-        var lea = args.lea != undefined ? args.lea : [true, 12];
+        var lea: [boolean, number] = args.lea != undefined ? args.lea : [true, 12];
 
         var canv = "";
         var twlist = [];
@@ -463,7 +462,7 @@ export class Tree {
         return canv;
     };
 
-    tree04(x: number, y: number, args: any): string {
+    tree04(x: number, y: number, args: Args): string {
         var args = args != undefined ? args : {};
         var hei = args.hei != undefined ? args.hei : 300;
         var wid = args.wid != undefined ? args.wid : 6;
@@ -552,7 +551,7 @@ export class Tree {
         return canv;
     };
 
-    tree05(x: number, y: number, args: any): string {
+    tree05(x: number, y: number, args: Args): string {
         var args = args != undefined ? args : {};
         var hei = args.hei != undefined ? args.hei : 300;
         var wid = args.wid != undefined ? args.wid : 5;
@@ -649,7 +648,7 @@ export class Tree {
     };
 
 
-    private fracTree(xoff: number, yoff: number, dep: number, args: any, txcanv: string, twcanv: string): Point[] {
+    private fracTree(xoff: number, yoff: number, dep: number, args: Args, txcanv: string, twcanv: string): Point[] {
         var args = args != undefined ? args : {};
         var hei = args.hei != undefined ? args.hei : 300;
         var wid = args.wid != undefined ? args.wid : 5;
@@ -723,7 +722,7 @@ export class Tree {
         return trmlist;
     }
 
-    tree06(x: number, y: number, args: any) {
+    tree06(x: number, y: number, args: Args) {
         var args = args != undefined ? args : {};
         var hei = args.hei != undefined ? args.hei : 100;
         var wid = args.wid != undefined ? args.wid : 6;
@@ -769,13 +768,13 @@ export class Tree {
         return canv;
     };
 
-    tree07(x: number, y: number, args: any): string {
+    tree07(x: number, y: number, args: Args): string {
         var args = args != undefined ? args : {};
         var hei = args.hei != undefined ? args.hei : 60;
         var wid = args.wid != undefined ? args.wid : 4;
         var ben =
-            args.ben != undefined
-                ? args.ben
+            args.bend != undefined
+                ? args.bend
                 : function (x: number) {
                     return Math.sqrt(x) * 0.2;
                 };
@@ -863,7 +862,7 @@ export class Tree {
         return canv;
     };
 
-    private fracTree2(xoff: number, yoff: number, dep: number, args: any) {
+    private fracTree2(xoff: number, yoff: number, dep: number, args: Args) {
         var args = args != undefined ? args : {};
         var ang = args.ang != undefined ? args.ang : -Math.PI / 2;
         var len = args.len != undefined ? args.len : 15;
@@ -944,7 +943,7 @@ export class Tree {
         return tcanv;
     }
 
-    tree08(x: number, y: number, args: any) {
+    tree08(x: number, y: number, args: Args) {
         var args = args != undefined ? args : {};
         var hei = args.hei != undefined ? args.hei : 80;
         var wid = args.wid != undefined ? args.wid : 1;
