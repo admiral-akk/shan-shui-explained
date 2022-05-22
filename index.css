@@ -24,6 +24,34 @@ body {
     cursor: pointer;
 }
 
+div#BRUSH_BTN:hover {
+    background-color: var(--hover-bg-color);
+}
+
+#BRUSH_BTN>div {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+#BRUSH_BTN\.t {
+    size: 4px;
+}
+
+
+#BRUSH_BTN {
+    width: 32px;
+    height: 32px;
+    color: rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(0, 0, 0, 0.4);
+    text-align: center;
+    display: table;
+    cursor: pointer;
+}
+
+div#SET_BTN:hover {
+    background-color: var(--hover-bg-color);
+}
+
 #SET_BTN>div {
     display: table-cell;
     vertical-align: middle;
@@ -61,11 +89,10 @@ div#SOURCE_BTN:hover {
     size: 4px;
 }
 
-#MENU {
+.menu {
     display: none;
     background-color: rgba(0, 0, 0, 0.1);
     border: 1px solid rgba(0, 0, 0, 0.4);
-
 }
 
 body>table {

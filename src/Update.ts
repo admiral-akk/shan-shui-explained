@@ -5,8 +5,11 @@ import { MountPlanner } from "./MountPlanner";
 import { PerlinNoise } from "./noise/PerlinNoise";
 import { randChoice } from "./Utils";
 import { water } from "./models/Water";
+import { blob } from "./brush/Blob";
+import { Args } from "./brush/Args";
 
 export class Update {
+
     mouseX = 0;
     mouseY = 0;
     private onMouseUpdate(e: MouseEvent) {
@@ -187,6 +190,10 @@ export class Update {
 
         this.chunkloader(this.MEM.cursx, this.MEM.cursx + this.MEM.windx);
         this.chunkrender(this.MEM.cursx, this.MEM.cursx + this.MEM.windx);
+
+        this.MEM.canv = "";
+
+        this.MEM.canv = blob(100, 100, new Args(), this.Noise) as string;
 
         document.getElementById("BG")!.innerHTML =
             "<svg id='SVG' xmlns='http://www.w3.org/2000/svg' width='" +

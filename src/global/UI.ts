@@ -19,8 +19,12 @@ export class UI {
         update.update();
         document.body.scrollTo(0, 0);
         console.log(["SCROLLX", window.scrollX]);
+        this.BuildBrushMenu();
         this.present();
     }
+
+
+
     xcroll(v: number) {
         this.MEM.cursx += v;
         if (this.update.needupdate()) {
@@ -69,4 +73,31 @@ export class UI {
         download('' + (Math.random()) + '.svg', document.getElementById('BG')!.innerHTML);
     }
     btnHoverCol = "rgba(0,0,0,0.1)";
+
+    private BuildBrushMenu() {
+        const table = document.createElement('table');
+        document.getElementById("BRUSH_MENU")!.appendChild(table);
+
+
+
+        const tr = addRowToTable(table);
+        const td = addDataToRow(tr);
+        const pre = document.createElement('pre');
+        pre.innerText = "HELLO WORLD";
+        td.appendChild(pre);
+
+
+    }
+}
+
+function addRowToTable(table: HTMLTableElement): HTMLTableRowElement {
+    const tr = document.createElement('tr');
+    table.appendChild(tr);
+    return tr;
+}
+
+function addDataToRow(row: HTMLTableRowElement): HTMLTableCellElement {
+    const td = document.createElement('td');
+    row.appendChild(td);
+    return td;
 }
