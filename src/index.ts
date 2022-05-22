@@ -28,7 +28,7 @@ const arch = new Arch(perlin, polyTools, man);
 const mount = new Mount(perlin, tree, arch, polyTools);
 const mountPlanner = new MountPlanner(perlin, memory);
 const update = new Update(memory, mountPlanner, mount, perlin, arch);
-const ui = new UI(memory, update, seed);
+const ui = new UI(memory, update, seed, perlin, man, tree);
 const canvas = new Canvas(perlin);
 
 // We add global variables at the end to ensure that we don't inadvertidly depend on them in our Typescript.

@@ -3,7 +3,7 @@ import { Point } from "../geometry/Point";
 import { stroke } from "../brush/Stroke";
 import { Args } from "../brush/Args";
 
-export function water(xoff: number, yoff: number, seed: number, Noise: PerlinNoise, args: Args = new Args()): string {
+export function water(xoff: number, yoff: number, Noise: PerlinNoise, args: Args = new Args()): string {
     var hei = args.hei != undefined ? args.hei : 2;
     var len = args.len != undefined ? args.len : 800;
     var clu = args.clu != undefined ? args.clu : 10;

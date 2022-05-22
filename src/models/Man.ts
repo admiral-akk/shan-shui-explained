@@ -201,7 +201,7 @@ export class Man {
     //      /3
     //     4
 
-    man(xoff: number, yoff: number, args: Args) {
+    man(xoff: number, yoff: number, args: Args = new Args()) {
         var sca = args.sca != undefined ? args.sca : 0.5;
         var hat = args.hat != undefined ? args.hat : (p0: Point, p1: Point, args: Args) => this.hat01(p0, p1, args);
         var ite =

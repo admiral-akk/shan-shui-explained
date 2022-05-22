@@ -10,7 +10,7 @@ import { Args } from "../brush/Args";
 export class Tree {
 
     constructor(private Noise: PerlinNoise, private PolyTools: PolyTools) { }
-    tree01(x: number, y: number, args: Args): string {
+    tree01(x: number, y: number, args: Args = new Args()): string {
         var args = args != undefined ? args : {};
         var hei = args.hei != undefined ? args.hei : 50;
         var wid = args.wid != undefined ? args.wid : 3;
@@ -68,6 +68,8 @@ export class Tree {
         canv +=
             poly(line1, { fil: "none", str: col, wid: 1.5 }) +
             poly(line2, { fil: "none", str: col, wid: 1.5 });
+        console.log("TREE");
+        console.log(canv);
         return canv;
     };
     tree02(x: number, y: number, args: Args = new Args()): string {

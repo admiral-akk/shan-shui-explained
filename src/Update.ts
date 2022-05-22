@@ -78,7 +78,7 @@ export class Update {
                         tag: plan[i].tag,
                         x: plan[i].x,
                         y: plan[i].y - 10000,
-                        canv: water(plan[i].x, plan[i].y, i * 2, this.Noise),
+                        canv: water(plan[i].x, plan[i].y, this.Noise),
                     });
                 } else if (plan[i].tag == "flatmount") {
                     this.add({
@@ -186,15 +186,7 @@ export class Update {
     }
 
     update() {
-        //console.log("update!")
-
-        this.chunkloader(this.MEM.cursx, this.MEM.cursx + this.MEM.windx);
-        this.chunkrender(this.MEM.cursx, this.MEM.cursx + this.MEM.windx);
-
-        this.MEM.canv = "";
-
-        this.MEM.canv = blob(100, 100, new Args(), this.Noise) as string;
-
+        console.log("update!")
         document.getElementById("BG")!.innerHTML =
             "<svg id='SVG' xmlns='http://www.w3.org/2000/svg' width='" +
             this.MEM.windx +

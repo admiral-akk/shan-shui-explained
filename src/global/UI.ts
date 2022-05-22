@@ -1,14 +1,60 @@
 import { download } from "../Downloader";
 import { Memory } from "../Memory";
+import { water } from "../models/Water";
+import { PerlinNoise } from "../noise/PerlinNoise";
 import { Update } from "../Update";
 
+import { Man } from "../models/Man";
+import { Tree } from "../models/Tree";
+enum ObjectTypes {
+    None,
+    Water,
+    Man,
+    Tree01,
+}
+
 export class UI {
-    constructor(private MEM: Memory, private update: Update, seed: string) {
+    private t: ObjectTypes = ObjectTypes.None;
+
+    private addObject(x: number, y: number, mem: Memory, noise: PerlinNoise) {
+
+        switch (this.t) {
+            case ObjectTypes.None:
+                console.log('none');
+                return;
+            case ObjectTypes.Water:
+                console.log('water');
+                this.MEM.canv += water(x, y, noise);
+                break;
+            case ObjectTypes.Man:
+                console.log('man');
+                this.MEM.canv += this.man.man(x, y);
+                break;
+            case ObjectTypes.Tree01:
+                console.log('Tree01');
+                this.MEM.canv += this.tree.tree01(x, y);
+                break;
+        }
+        console.log(`canvas now: ${this.MEM.canv}`);
+        this.update.update();
+
+    }
+    constructor(private MEM: Memory, private update: Update, seed: string, Noise: PerlinNoise, private man: Man, private tree: Tree) {
         window.addEventListener("scroll", (e: Event) => {
             document.getElementById("SETTING")!.style.left = Math.max(
                 4,
                 40 - window.scrollX
             ) + "px";
+        });
+
+
+        window.addEventListener('click', (ev: MouseEvent) => {
+            const target = ev.target as HTMLElement;
+            if (!target || target.id !== "SVG") {
+                return;
+            }
+            console.log(`clicked on ${ev.pageX},${ev.pageY}`);
+            this.addObject(ev.pageX, ev.pageY, this.MEM, Noise);
         });
 
         MEM.lasttick = new Date().getTime();
@@ -78,14 +124,28 @@ export class UI {
         const table = document.createElement('table');
         document.getElementById("BRUSH_MENU")!.appendChild(table);
 
-
-
         const tr = addRowToTable(table);
         const td = addDataToRow(tr);
         const pre = document.createElement('pre');
         pre.innerText = "HELLO WORLD";
         td.appendChild(pre);
 
+        const tr2 = addRowToTable(table);
+        const td2 = addDataToRow(tr2);
+        const input = document.createElement('select');
+
+        input.onchange = (ev: Event) => {
+            console.log(`raw key: ${input.value}`);
+            console.log(`key: ${input.value as keyof typeof ObjectTypes}`);
+            this.t = parseInt(input.value);
+            console.log(`Type is now: ${this.t}, ${ObjectTypes[this.t]}`)
+        }
+        Object.keys(ObjectTypes).filter((v) => isNaN(Number(v))).forEach((val: string, index: number) => {
+            const enumVal = ObjectTypes[val as keyof typeof ObjectTypes];
+            addOption(input, enumVal);
+
+        });
+        td2.appendChild(input);
 
     }
 }
@@ -100,4 +160,11 @@ function addDataToRow(row: HTMLTableRowElement): HTMLTableCellElement {
     const td = document.createElement('td');
     row.appendChild(td);
     return td;
+}
+
+function addOption(input: HTMLSelectElement, val: ObjectTypes) {
+    const option = document.createElement('option');
+    option.value = val.toString();
+    option.innerText = ObjectTypes[val];
+    input.appendChild(option);
 }
