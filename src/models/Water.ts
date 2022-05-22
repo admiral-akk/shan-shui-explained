@@ -1,5 +1,5 @@
 import { PerlinNoise } from "../PerlinNoise";
-import { Point } from "../Point";
+import { Point } from "../geometry/Point";
 import { stroke } from "../Stroke";
 
 export function water(xoff: number, yoff: number, seed: number, Noise: PerlinNoise, args?: any): string {

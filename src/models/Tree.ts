@@ -1,8 +1,8 @@
 import { blob } from "../Blob";
-import { div } from "../Div";
+import { div } from "../geometry/Div";
 import { PerlinNoise } from "../PerlinNoise";
-import { Point, Triangle } from "../Point";
-import { PolyTools } from "../PolyTools";
+import { Point, Triangle } from "../geometry/Point";
+import { PolyTools } from "../geometry/PolyTools";
 import { stroke } from "../Stroke";
 import { distance, loopNoise, normRand, poly, randChoice, randGaussian } from "../Utils";
 

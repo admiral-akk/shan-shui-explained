@@ -2,7 +2,7 @@ import { parseQueryParams } from "./ParseArgs";
 import { InitializeGlobalVariables } from "./GlobalVariables"
 import { UniformRNG } from "./UniformRNG";
 import { PerlinNoise } from "./PerlinNoise";
-import { PolyTools } from "./PolyTools";
+import { PolyTools } from "./geometry/PolyTools";
 import { Tree } from "./models/Tree";
 import { Arch } from "./models/Arch";
 import { Mount } from "./models/Mount";

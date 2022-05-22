@@ -1,5 +1,5 @@
 import { PerlinNoise } from "./PerlinNoise";
-import { Point } from "./Point";
+import { Point } from "./geometry/Point";
 import { loopNoise, poly } from "./Utils";
 
 export function blob(x: number, y: number, args: any, noise: PerlinNoise): string | Point[] {

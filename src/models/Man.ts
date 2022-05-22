@@ -1,9 +1,9 @@
-import { div } from "../Div";
+import { div } from "../geometry/Div";
 import { PerlinNoise } from "../PerlinNoise";
-import { Point } from "../Point";
+import { Point } from "../geometry/Point";
 import { stroke } from "../Stroke";
 import { distance, poly, normRand, bezmh } from "../Utils";
-import { PolyTools } from "../PolyTools";
+import { PolyTools } from "../geometry/PolyTools";
 
 export class Man {
 

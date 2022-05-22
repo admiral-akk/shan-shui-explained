@@ -1,5 +1,5 @@
 import { PerlinNoise } from "./PerlinNoise";
-import { Point } from "./Point";
+import { Point } from "./geometry/Point";
 import { poly } from "./Utils";
 
 export function stroke(ptlist: Point[], args: any, noise: PerlinNoise): string {

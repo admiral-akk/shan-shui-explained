@@ -1,5 +1,5 @@
-import { Point } from "./Point";
-import { PolyTools } from "./PolyTools";
+import { Point } from "./geometry/Point";
+import { PolyTools } from "./geometry/PolyTools";
 
 export function unNan(plist: any): any {
     if (typeof plist != "object" || plist == null) {

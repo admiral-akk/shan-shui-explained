@@ -1,7 +1,7 @@
-import { div } from "../Div";
+import { div } from "../geometry/Div";
 import { PerlinNoise } from "../PerlinNoise";
-import { Point } from "../Point";
-import { PolyTools } from "../PolyTools";
+import { Point } from "../geometry/Point";
+import { PolyTools } from "../geometry/PolyTools";
 import { stroke } from "../Stroke";
 import { texture } from "../Texture";
 import { Tree } from "./Tree";
