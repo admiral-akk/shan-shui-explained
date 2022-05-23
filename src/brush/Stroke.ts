@@ -21,6 +21,7 @@ export class StrokeArgs {
     }
 }
 
+// We add a left/right segment to vary the width of the line.
 function strokeSegment(width: number, noiseMagnitude: number, noiseVal: number,
     prevPoint: Point, currPoint: Point, nextPoint: Point): [Point, Point] {
 
@@ -62,7 +63,8 @@ function privateStroke(ptlist: Point[], args: StrokeArgs, noise: PerlinNoise): s
     var n0 = Math.random() * 10;
     for (var i = 1; i < ptlist.length - 1; i++) {
         const width = args.maxWidth * args.width(i / ptlist.length);
-        // The noise varies with how far along the curve we are.
+
+        // The noise varies with how far along the curve we are. This is to allow us to have a thicker line near the middle.
         const noiseVal = noise.noise(i * 0.5, n0);
         const [leftPoint, rightPoint] = strokeSegment(width, args.noiseStr, noiseVal, ptlist[i - 1], ptlist[i], ptlist[i + 1]);
         leftCurve.push(leftPoint);

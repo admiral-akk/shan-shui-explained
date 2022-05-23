@@ -7,22 +7,30 @@ import { Update } from "../Update";
 import { Man } from "../models/Man";
 import { Tree } from "../models/Tree";
 import { Args } from "../brush/Args";
+import { stroke } from "../brush/Stroke";
+import { Point } from "../geometry/Point";
 enum ObjectTypes {
     None,
     Water,
     Man,
     Tree01,
+    Line
 }
 
 export class UI {
     private t: ObjectTypes = ObjectTypes.None;
 
+    private points: Point[] = [];
     private addObject(x: number, y: number, mem: Memory, noise: PerlinNoise) {
 
         switch (this.t) {
             case ObjectTypes.None:
+                console.log('none'); return;
+            case ObjectTypes.Line:
                 console.log('none');
-                return;
+                this.points.push([x, y]);
+                this.MEM.canv = stroke(this.points, {}, noise);
+                break;
             case ObjectTypes.Water:
                 console.log('water');
                 this.MEM.canv += water(x, y, noise);
