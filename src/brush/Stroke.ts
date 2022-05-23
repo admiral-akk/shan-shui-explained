@@ -40,6 +40,10 @@ function strokePart(width: number, noiseMagnitude: number, noiseVal: number,
     ];
 }
 
+function loop(start: Point, end: Point, leftPoints: Point[], rightPoints: Point[]): Point[] {
+    return [start].concat(leftPoints).concat([end]).concat(rightPoints.reverse()).concat([start])
+}
+
 export function stroke(ptlist: Point[], args: Args, noise: PerlinNoise): string {
     var xof = args.xof != undefined ? args.xof : 0;
     var yof = args.yof != undefined ? args.yof : 0;
@@ -57,27 +61,23 @@ export function stroke(ptlist: Point[], args: Args, noise: PerlinNoise): string 
     if (ptlist.length == 0) {
         return "";
     }
-    let vtxlist0: Point[] = [];
-    let vtxlist1: Point[] = [];
-    let vtxlist: Point[] = [];
+    let leftCurve: Point[] = [];
+    let rightCurve: Point[] = [];
+    let ccwPolygon: Point[] = [];
     var n0 = Math.random() * 10;
     for (var i = 1; i < ptlist.length - 1; i++) {
         const width = wid * fun(i / ptlist.length);
         // The noise varies with how far along the curve we are.
         const noiseVal = noise.noise(i * 0.5, n0);
         const [leftPoint, rightPoint] = strokePart(width, noi, noiseVal, ptlist[i - 1], ptlist[i], ptlist[i + 1]);
-        vtxlist0.push(leftPoint);
-        vtxlist1.push(rightPoint);
+        leftCurve.push(leftPoint);
+        rightCurve.push(rightPoint);
     }
 
-    vtxlist = [ptlist[0]]
-        .concat(
-            vtxlist0.concat(vtxlist1.concat([ptlist[ptlist.length - 1]]).reverse()),
-        )
-        .concat([ptlist[0]]);
+    ccwPolygon = loop(ptlist[0], ptlist[ptlist.length - 1], leftCurve, rightCurve);
 
     var canv = poly(
-        vtxlist.map(function (x) {
+        ccwPolygon.map(function (x) {
             return [x[0] + xof, x[1] + yof];
         }),
         { fil: col, str: col, wid: out },
