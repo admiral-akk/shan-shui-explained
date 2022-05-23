@@ -3,6 +3,43 @@ import { Point } from "../geometry/Point";
 import { poly } from "../Utils";
 import { Args } from "./Args";
 
+export class StrokeArgs {
+    xof?: number = 0;
+    yof?: number = 0;
+    wid?: number = 2;
+    col?: string;
+    noi?: number;
+    out?: number;
+    fun?: (x: number) => number;
+}
+
+function strokePart(width: number, noiseMagnitude: number, noiseVal: number,
+    prevPoint: Point, currPoint: Point, nextPoint: Point): [Point, Point] {
+
+    // Vary the width.
+    width = width * (1 - noiseMagnitude) + width * noiseMagnitude * noiseVal;
+
+    // Estimate the angle tangent to the curve at this point.
+    var a1 = Math.atan2(
+        currPoint[1] - prevPoint[1],
+        currPoint[0] - prevPoint[0],
+    );
+    var a2 = Math.atan2(
+        currPoint[1] - nextPoint[1],
+        currPoint[0] - nextPoint[0],
+    );
+
+    // Estimate the angle tangent to the curve at this point.
+    var a = (a1 + a2) / 2;
+    if (a < a2) {
+        a += Math.PI;
+    }
+    return [
+        [currPoint[0] + width * Math.cos(a), currPoint[1] + width * Math.sin(a)],
+        [currPoint[0] - width * Math.cos(a), currPoint[1] - width * Math.sin(a)]
+    ];
+}
+
 export function stroke(ptlist: Point[], args: Args, noise: PerlinNoise): string {
     var xof = args.xof != undefined ? args.xof : 0;
     var yof = args.yof != undefined ? args.yof : 0;
@@ -25,28 +62,12 @@ export function stroke(ptlist: Point[], args: Args, noise: PerlinNoise): string 
     let vtxlist: Point[] = [];
     var n0 = Math.random() * 10;
     for (var i = 1; i < ptlist.length - 1; i++) {
-        var w = wid * fun(i / ptlist.length);
-        w = w * (1 - noi) + w * noi * noise.noise(i * 0.5, n0);
-        var a1 = Math.atan2(
-            ptlist[i][1] - ptlist[i - 1][1],
-            ptlist[i][0] - ptlist[i - 1][0],
-        );
-        var a2 = Math.atan2(
-            ptlist[i][1] - ptlist[i + 1][1],
-            ptlist[i][0] - ptlist[i + 1][0],
-        );
-        var a = (a1 + a2) / 2;
-        if (a < a2) {
-            a += Math.PI;
-        }
-        vtxlist0.push([
-            ptlist[i][0] + w * Math.cos(a),
-            ptlist[i][1] + w * Math.sin(a),
-        ]);
-        vtxlist1.push([
-            ptlist[i][0] - w * Math.cos(a),
-            ptlist[i][1] - w * Math.sin(a),
-        ]);
+        const width = wid * fun(i / ptlist.length);
+        // The noise varies with how far along the curve we are.
+        const noiseVal = noise.noise(i * 0.5, n0);
+        const [leftPoint, rightPoint] = strokePart(width, noi, noiseVal, ptlist[i - 1], ptlist[i], ptlist[i + 1]);
+        vtxlist0.push(leftPoint);
+        vtxlist1.push(rightPoint);
     }
 
     vtxlist = [ptlist[0]]
