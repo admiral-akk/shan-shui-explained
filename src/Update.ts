@@ -162,7 +162,7 @@ export class Update {
     }
 
     calcViewBox() {
-        var zoom = 1.142;
+        var zoom = 1.0;
         return "" + this.MEM.cursx + " 0 " + this.MEM.windx / zoom + " " + this.MEM.windy / zoom;
     }
 

@@ -55,8 +55,8 @@ export class UI {
             if (!target || target.id !== "SVG") {
                 return;
             }
-            console.log(`clicked on ${ev.pageX},${ev.pageY}`);
-            this.addObject(ev.pageX, ev.pageY, this.MEM, Noise);
+            console.log(`clicked on ${ev.offsetX},${ev.offsetY}`);
+            this.addObject(ev.offsetX, ev.offsetY, this.MEM, Noise);
         });
 
         MEM.lasttick = new Date().getTime();
