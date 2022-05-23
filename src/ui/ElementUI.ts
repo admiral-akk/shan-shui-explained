@@ -10,7 +10,9 @@ export class Tree01 extends ElementUI {
         super(table);
     }
 
-    private InitializeTable() { }
+    private InitializeTable() {
+
+    }
 }
 
 function addRowToTable(table: HTMLTableElement): HTMLTableRowElement {

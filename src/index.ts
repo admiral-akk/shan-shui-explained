@@ -8,7 +8,7 @@ import { Arch } from "./models/Arch";
 import { Mount } from "./models/Mount";
 import { Man } from "./models/Man";
 import { MountPlanner } from "./MountPlanner";
-import { Memory } from "./Memory";
+import { Memory } from "./struct/Memory";
 import { Update } from "./Update";
 import { UI } from "./global/UI";
 import { Canvas } from "./Canvas";

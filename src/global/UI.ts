@@ -1,5 +1,5 @@
 import { download } from "../Downloader";
-import { Memory } from "../Memory";
+import { Memory } from "../struct/Memory";
 import { water } from "../models/Water";
 import { PerlinNoise } from "../noise/PerlinNoise";
 import { Update } from "../Update";

@@ -1,5 +1,5 @@
 import { Arch } from "./models/Arch";
-import { Memory } from "./Memory";
+import { Memory } from "./struct/Memory";
 import { Mount } from "./models/Mount";
 import { MountPlanner } from "./MountPlanner";
 import { PerlinNoise } from "./noise/PerlinNoise";

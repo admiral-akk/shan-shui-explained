@@ -1,4 +1,4 @@
-import { Memory } from "./Memory";
+import { Memory } from "./struct/Memory";
 import { PerlinNoise } from "./noise/PerlinNoise";
 
 export class MountPlanner {
