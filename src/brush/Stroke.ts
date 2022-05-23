@@ -11,7 +11,7 @@ export class StrokeArgs {
     lineWidth: number;
     width: (x: number) => number;
 
-    constructor(args: Args) {
+    constructor(args: Args = new Args()) {
         this.startPos = [args.xof ? args.xof! : 0, args.yof ? args.yof! : 0];
         this.maxWidth = args.wid ? args.wid! : 2;
         this.color = args.col ? args.col! : "rgba(200,200,200,0.9)";
@@ -64,7 +64,7 @@ function privateStroke(ptlist: Point[], args: StrokeArgs, noise: PerlinNoise): s
     for (var i = 1; i < ptlist.length - 1; i++) {
         const width = args.maxWidth * args.width(i / ptlist.length);
 
-        // The noise varies with how far along the curve we are. This is to allow us to have a thicker line near the middle.
+        // The noise varies with how far along the curve we are.
         const noiseVal = noise.noise(i * 0.5, n0);
         const [leftPoint, rightPoint] = strokeSegment(width, args.noiseStr, noiseVal, ptlist[i - 1], ptlist[i], ptlist[i + 1]);
         leftCurve.push(leftPoint);
@@ -78,6 +78,9 @@ function privateStroke(ptlist: Point[], args: StrokeArgs, noise: PerlinNoise): s
         { xof: args.startPos[0], yof: args.startPos[1], fil: args.color, str: args.color, wid: args.lineWidth },
     );
     return canv;
+}
+export function newStroke(ptlist: Point[], args: StrokeArgs, noise: PerlinNoise): string {
+    return privateStroke(ptlist, args, noise);
 }
 
 export function stroke(ptlist: Point[], args: Args, noise: PerlinNoise): string {

@@ -7,56 +7,36 @@ import { Update } from "../Update";
 import { Man } from "../models/Man";
 import { Tree } from "../models/Tree";
 import { Args } from "../brush/Args";
-import { stroke } from "../brush/Stroke";
+import { newStroke, stroke } from "../brush/Stroke";
 import { Point } from "../geometry/Point";
+import { StrokeUI } from "../ui/StrokeUI";
 enum ObjectTypes {
-    None,
-    Water,
-    Man,
-    Tree01,
     Line
 }
 
 export class UI {
-    private t: ObjectTypes = ObjectTypes.None;
+    private t: ObjectTypes = ObjectTypes.Line;
 
     private points: Point[] = [];
-    private addObject(x: number, y: number, mem: Memory, noise: PerlinNoise) {
-
+    private addObject(x: number, y: number) {
         switch (this.t) {
-            case ObjectTypes.None:
-                console.log('none'); return;
             case ObjectTypes.Line:
-                console.log('none');
+                console.log('line');
                 this.points.push([x, y]);
-                this.MEM.canv = stroke(this.points, {}, noise);
-                break;
-            case ObjectTypes.Water:
-                console.log('water');
-                this.MEM.canv += water(x, y, noise);
-                break;
-            case ObjectTypes.Man:
-                console.log('man');
-                this.MEM.canv += this.man.man(x, y);
-                break;
-            case ObjectTypes.Tree01:
-                console.log('Tree01');
-                this.MEM.canv += this.tree.tree01(x, y);
                 break;
         }
-        console.log(`canvas now: ${this.MEM.canv}`);
-        this.update.update();
-
+        this.updated();
     }
+
     constructor(private MEM: Memory, private update: Update, seed: string,
-        Noise: PerlinNoise, private man: Man, private tree: Tree) {
+        private Noise: PerlinNoise, private man: Man, private tree: Tree) {
         window.addEventListener('click', (ev: MouseEvent) => {
             const target = ev.target as HTMLElement;
             if (!target || target.id !== "SVG") {
                 return;
             }
             console.log(`clicked on ${ev.offsetX},${ev.offsetY}`);
-            this.addObject(ev.offsetX, ev.offsetY, this.MEM, Noise);
+            this.addObject(ev.offsetX, ev.offsetY);
         });
 
         MEM.lasttick = new Date().getTime();
@@ -86,10 +66,6 @@ export class UI {
             setTimeout(() => this.autoxcroll(v), 2000);
         }
     }
-    toggleVisible(id: string) {
-        var v = document.getElementById(id)!.style.display == "none";
-        document.getElementById(id)!.style.display = v ? "block" : "none";
-    }
     toggleText(id: string, a: string, b: string) {
         var v = document.getElementById(id)!.innerHTML;
         document.getElementById(id)!.innerHTML = v == "" || v == b ? a : b;
@@ -110,21 +86,29 @@ export class UI {
             setTimeout(() => this.present(), 1);
         }
     }
-    reloadWSeed(s: string) {
-        var u = window.location.href.split("?")[0];
-        window.location.href = u + "?seed=" + s;
-        //window.location.reload(true)
-    }
 
     download() {
         download('' + (Math.random()) + '.svg', document.getElementById('BG')!.innerHTML);
     }
     btnHoverCol = "rgba(0,0,0,0.1)";
 
+    private updated() {
+        switch (this.t) {
+            case ObjectTypes.Line:
+                console.log('line');
+                this.MEM.canv = newStroke(this.points, this.strokeUI!.args!, this.Noise);
+                break;
+        }
+        console.log(`canvas now: ${this.MEM.canv}`);
+        this.update.update();
+    }
+
+    private strokeUI?: StrokeUI;
     private BuildBrushMenu() {
         const table = document.createElement('table');
         document.getElementById("BRUSH_MENU")!.appendChild(table);
         addTypeSelector(table, (type: ObjectTypes) => this.t = type);
+        this.strokeUI = new StrokeUI(table, () => this.updated());
     }
 }
 
