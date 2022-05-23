@@ -124,37 +124,30 @@ export class UI {
     private BuildBrushMenu() {
         const table = document.createElement('table');
         document.getElementById("BRUSH_MENU")!.appendChild(table);
-
-        const args = new Args();
-
-        args.ang = 10;
-
-        Object.keys(args).forEach(arg => { console.log(`arg: ${arg}`) })
-
-        const tr = addRowToTable(table);
-        const td = addDataToRow(tr);
-        const pre = document.createElement('pre');
-        pre.innerText = "HELLO WORLD";
-        td.appendChild(pre);
-
-        const tr2 = addRowToTable(table);
-        const td2 = addDataToRow(tr2);
-        const input = document.createElement('select');
-
-        input.onchange = (ev: Event) => {
-            console.log(`raw key: ${input.value}`);
-            console.log(`key: ${input.value as keyof typeof ObjectTypes}`);
-            this.t = parseInt(input.value);
-            console.log(`Type is now: ${this.t}, ${ObjectTypes[this.t]}`)
-        }
-        Object.keys(ObjectTypes).filter((v) => isNaN(Number(v))).forEach((val: string, index: number) => {
-            const enumVal = ObjectTypes[val as keyof typeof ObjectTypes];
-            addOption(input, enumVal);
-
-        });
-        td2.appendChild(input);
-
+        addTypeSelector(table, (type: ObjectTypes) => this.t = type);
     }
+}
+
+function addTypeSelector(table: HTMLTableElement, setter: (type: ObjectTypes) => void) {
+    const tr = addRowToTable(table);
+    const td = addDataToRow(tr);
+    const pre = document.createElement('pre');
+    pre.innerText = "Drawing Type";
+    td.appendChild(pre);
+
+    const tr2 = addRowToTable(table);
+    const td2 = addDataToRow(tr2);
+    const input = document.createElement('select');
+
+    input.onchange = (ev: Event) => {
+        setter(parseInt(input.value));
+    }
+    Object.keys(ObjectTypes).filter((v) => isNaN(Number(v))).forEach((val: string, index: number) => {
+        const enumVal = ObjectTypes[val as keyof typeof ObjectTypes];
+        addOption(input, enumVal);
+
+    });
+    td2.appendChild(input);
 }
 
 function addRowToTable(table: HTMLTableElement): HTMLTableRowElement {
