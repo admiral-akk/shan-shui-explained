@@ -4,16 +4,26 @@ import { poly } from "../Utils";
 import { Args } from "./Args";
 
 export class StrokeArgs {
-    xof?: number = 0;
-    yof?: number = 0;
-    wid?: number = 2;
-    col?: string;
-    noi?: number;
-    out?: number;
-    fun?: (x: number) => number;
+    xof: number;
+    yof: number;
+    wid: number;
+    col: string;
+    noi: number;
+    out: number;
+    fun: (x: number) => number;
+
+    constructor(args: Args) {
+        this.xof = args.xof ? args.xof! : 0;
+        this.yof = args.yof ? args.yof! : 0;
+        this.wid = args.wid ? args.wid! : 2;
+        this.col = args.col ? args.col! : "rgba(200,200,200,0.9)";
+        this.noi = args.noi ? args.noi : 0.5;
+        this.out = args.out ? args.out! : 0.5;
+        this.fun = args.fun ? args.fun! : (x: number) => Math.sin(x * Math.PI);
+    }
 }
 
-function strokePart(width: number, noiseMagnitude: number, noiseVal: number,
+function strokeSegment(width: number, noiseMagnitude: number, noiseVal: number,
     prevPoint: Point, currPoint: Point, nextPoint: Point): [Point, Point] {
 
     // Vary the width.
@@ -40,23 +50,7 @@ function strokePart(width: number, noiseMagnitude: number, noiseVal: number,
     ];
 }
 
-function loop(start: Point, end: Point, leftPoints: Point[], rightPoints: Point[]): Point[] {
-    return [start].concat(leftPoints).concat([end]).concat(rightPoints.reverse()).concat([start])
-}
-
-export function stroke(ptlist: Point[], args: Args, noise: PerlinNoise): string {
-    var xof = args.xof != undefined ? args.xof : 0;
-    var yof = args.yof != undefined ? args.yof : 0;
-    var wid = args.wid != undefined ? args.wid : 2;
-    var col = args.col != undefined ? args.col : "rgba(200,200,200,0.9)";
-    var noi = args.noi != undefined ? args.noi : 0.5;
-    var out = args.out != undefined ? args.out : 1;
-    var fun =
-        args.fun != undefined
-            ? args.fun
-            : function (x: number) {
-                return Math.sin(x * Math.PI);
-            };
+function privateStroke(ptlist: Point[], args: StrokeArgs, noise: PerlinNoise): string {
 
     if (ptlist.length == 0) {
         return "";
@@ -66,10 +60,10 @@ export function stroke(ptlist: Point[], args: Args, noise: PerlinNoise): string 
     let ccwPolygon: Point[] = [];
     var n0 = Math.random() * 10;
     for (var i = 1; i < ptlist.length - 1; i++) {
-        const width = wid * fun(i / ptlist.length);
+        const width = args.wid * args.fun(i / ptlist.length);
         // The noise varies with how far along the curve we are.
         const noiseVal = noise.noise(i * 0.5, n0);
-        const [leftPoint, rightPoint] = strokePart(width, noi, noiseVal, ptlist[i - 1], ptlist[i], ptlist[i + 1]);
+        const [leftPoint, rightPoint] = strokeSegment(width, args.noi, noiseVal, ptlist[i - 1], ptlist[i], ptlist[i + 1]);
         leftCurve.push(leftPoint);
         rightCurve.push(rightPoint);
     }
@@ -78,9 +72,18 @@ export function stroke(ptlist: Point[], args: Args, noise: PerlinNoise): string 
 
     var canv = poly(
         ccwPolygon.map(function (x) {
-            return [x[0] + xof, x[1] + yof];
+            return [x[0] + args.xof, x[1] + args.yof];
         }),
-        { fil: col, str: col, wid: out },
+        { fil: args.col, str: args.col, wid: args.out },
     );
     return canv;
+
+}
+
+function loop(start: Point, end: Point, leftPoints: Point[], rightPoints: Point[]): Point[] {
+    return [start].concat(leftPoints).concat([end]).concat(rightPoints.reverse()).concat([start])
+}
+
+export function stroke(ptlist: Point[], args: Args, noise: PerlinNoise): string {
+    return privateStroke(ptlist, new StrokeArgs(args), noise);
 }
