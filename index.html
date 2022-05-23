@@ -1,69 +1,8 @@
 <script>var exports = {};</script>
 <link rel="stylesheet" href="index.css">
 
-<body id="BG_IMAGE">
+<body>
   <div id="SETTING">
-    <div id="SET_BTN" onclick="UI.toggleVisible('MENU');UI.toggleText('SET_BTN.t','&#x2630;','&#x2715;')"
-      title="Settings">
-      <div>
-        <font id="SET_BTN.t"> &#x2630; </font>
-      </div>
-    </div>
-    <div style="height:4px"></div>
-    <div id="MENU" class="menu">
-      <table>
-        <tr>
-          <td>
-            <pre>SEED</pre>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <input title="random seed" id="INP_SEED" />
-            <button onclick="UI.reloadWSeed(document.getElementById('INP_SEED').value)">
-              Generate
-            </button>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <pre>VIEW</pre>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <button title="view left" onclick="UI.xcroll(-parseFloat(document.getElementById('INC_STEP').value))">
-              < </button>
-                <input title="increment step" id="INC_STEP" type="number" value="200" min="0" max="10000" step="20" />
-                <button title="view right" onclick="UI.xcroll(parseFloat(document.getElementById('INC_STEP').value))">
-                  >
-                </button>
-          </td>
-        </tr>
-
-        <tr>
-          <td>
-            <pre><input id = "AUTO_SCROLL" type="checkbox" >Auto-scroll</pre>
-          </td>
-
-          <td></td>
-        </tr>
-
-        <tr>
-          <td>
-            <pre>SAVE</pre>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <button title="WARNING: This may take a while..." type="button" id="dwn-btn" value="Download as SVG"
-              onclick="UI.download();">
-              Download as .SVG
-            </button>
-          </td>
-        </tr>
-      </table>
-    </div>
     <div id="BRUSH_BTN" onclick="UI.toggleVisible('BRUSH_MENU');UI.toggleText('BRUSH_BTN.t','&#x2630;','&#x2715;')"
       title="Settings">
       <div>
@@ -74,35 +13,18 @@
     <div id="BRUSH_MENU" class="menu">
     </div>
   </div>
-
-  <div id="SOURCE_BTN" onclick="window.location='https://github.com/LingDong-/shan-shui-inf';"
-    title="Fork me on Github!">
+  </div>
+  <div id="SOURCE_BTN" onclick="window.location='https://github.com/admiral-akk/shan-shui-explained';"
+    title="Source repo">
     <div>
       <font id="SET_BTN.t"> &lt;/&gt; </font>
     </div>
   </div>
   <table>
-    <tr>
-      <td>
-        <div id="L" onclick="UI.xcroll(-200)">
-          <div id="L.t">
-            <font>&#x3008;</font>
-          </div>
-        </div>
-      </td>
-
-      <td>
-        <div id="BG">
-        </div>
-      </td>
-
-      <td>
-        <div id="R" onclick="UI.xcroll(200)">
-          <div id="R.t">
-            <font>&#x3009;</font>
-          </div>
-        </div>
-      </td>
+    <td>
+      <div id="BG">
+      </div>
+    </td>
     </tr>
   </table>
 </body>

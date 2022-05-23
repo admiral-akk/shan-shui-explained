@@ -60,7 +60,6 @@ export class UI {
         });
 
         MEM.lasttick = new Date().getTime();
-        (document.getElementById("INP_SEED") as HTMLInputElement).value = seed;
         document
             .getElementById("BG")!
             .setAttribute("style", "width:" + MEM.windx + "px");

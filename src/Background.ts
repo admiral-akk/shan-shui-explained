@@ -13,7 +13,7 @@ export class BackgroundArgs {
 }
 
 export class Background {
-    private background: HTMLElement = document.getElementById("BG_IMAGE")!;
+    private background: HTMLElement = document.getElementById("BG")!;
     private args: BackgroundArgs = new BackgroundArgs();
     constructor(noise: PerlinNoise) {
         var canvas = document.getElementById("bgcanv") as HTMLCanvasElement;
