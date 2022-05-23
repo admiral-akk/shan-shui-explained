@@ -1,30 +1,30 @@
 import { download } from "../Downloader";
 import { Memory } from "../struct/Memory";
-import { water } from "../models/Water";
 import { PerlinNoise } from "../noise/PerlinNoise";
 import { Update } from "../Update";
 
 import { Man } from "../models/Man";
 import { Tree } from "../models/Tree";
-import { Args } from "../brush/Args";
-import { newStroke, stroke } from "../brush/Stroke";
+import { newStroke } from "../brush/Stroke";
 import { Point } from "../geometry/Point";
 import { StrokeUI } from "../ui/StrokeUI";
+import { ParameterUI } from "../ui/ElementUI";
+import { WaterUI } from "../ui/WaterUI";
+import { newWater } from "../models/Water";
 enum ObjectTypes {
-    Line
+    Line,
+    Water
 }
 
 export class UI {
     private t: ObjectTypes = ObjectTypes.Line;
 
     private points: Point[] = [];
+
+    private UIs: Record<string, ParameterUI> = {
+    };
     private addObject(x: number, y: number) {
-        switch (this.t) {
-            case ObjectTypes.Line:
-                console.log('line');
-                this.points.push([x, y]);
-                break;
-        }
+        this.points.push([x, y]);
         this.updated();
     }
 
@@ -96,7 +96,14 @@ export class UI {
         switch (this.t) {
             case ObjectTypes.Line:
                 console.log('line');
-                this.MEM.canv = newStroke(this.points, this.strokeUI!.args!, this.Noise);
+                this.MEM.canv = newStroke(this.points, (this.UIs[ObjectTypes.Line] as StrokeUI).args!, this.Noise);
+                break;
+            case ObjectTypes.Water:
+                console.log('water');
+                this.MEM.canv = "";
+                this.points.forEach(point => {
+                    this.MEM.canv += newWater(point[0], point[1], this.Noise, (this.UIs[ObjectTypes.Water] as WaterUI).args!);
+                });
                 break;
         }
         console.log(`canvas now: ${this.MEM.canv}`);
@@ -107,8 +114,15 @@ export class UI {
     private BuildBrushMenu() {
         const table = document.createElement('table');
         document.getElementById("BRUSH_MENU")!.appendChild(table);
-        addTypeSelector(table, (type: ObjectTypes) => this.t = type);
-        this.strokeUI = new StrokeUI(table, () => this.updated());
+        addTypeSelector(table, (type: ObjectTypes) => {
+            this.UIs[this.t].SetVisibility(false);
+            this.t = type;
+            this.UIs[this.t].SetVisibility(true);
+            this.points = [];
+        });
+        this.UIs[ObjectTypes.Line] = new StrokeUI(table, () => this.updated());
+        this.UIs[ObjectTypes.Water] = new WaterUI(table, () => this.updated());
+        this.UIs[this.t].SetVisibility(true);
     }
 }
 
@@ -129,7 +143,6 @@ function addTypeSelector(table: HTMLTableElement, setter: (type: ObjectTypes) =>
     Object.keys(ObjectTypes).filter((v) => isNaN(Number(v))).forEach((val: string, index: number) => {
         const enumVal = ObjectTypes[val as keyof typeof ObjectTypes];
         addOption(input, enumVal);
-
     });
     td2.appendChild(input);
 }

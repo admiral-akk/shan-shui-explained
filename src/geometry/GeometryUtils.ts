@@ -1,4 +1,4 @@
-import { AssertSlopeIntercept, LineSegment, Point, SlopeIntercept, Triangle } from "./Point";
+import { AssertSlopeIntercept, Point, SlopeIntercept, Triangle } from "./Point";
 
 export function Distance(p0: Point, p1: Point): number {
     return Math.sqrt(Math.pow(p0[0] - p1[0], 2) + Math.pow(p0[1] - p1[1], 2));
