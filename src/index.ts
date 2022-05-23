@@ -11,7 +11,7 @@ import { MountPlanner } from "./MountPlanner";
 import { Memory } from "./struct/Memory";
 import { Update } from "./Update";
 import { UI } from "./global/UI";
-import { Canvas } from "./Canvas";
+import { Background } from "./Background";
 
 const rng = new UniformRNG();
 
@@ -29,7 +29,7 @@ const mount = new Mount(perlin, tree, arch, polyTools);
 const mountPlanner = new MountPlanner(perlin, memory);
 const update = new Update(memory, mountPlanner, mount, perlin, arch);
 const ui = new UI(memory, update, seed, perlin, man, tree);
-const canvas = new Canvas(perlin);
+const background = new Background(perlin);
 
 // We add global variables at the end to ensure that we don't inadvertidly depend on them in our Typescript.
 InitializeGlobalVariables(rng, ui);
