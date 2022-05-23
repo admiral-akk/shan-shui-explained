@@ -5,8 +5,6 @@ import { MountPlanner } from "./MountPlanner";
 import { PerlinNoise } from "./noise/PerlinNoise";
 import { randChoice } from "./Utils";
 import { water } from "./models/Water";
-import { blob } from "./brush/Blob";
-import { Args } from "./brush/Args";
 
 export class Update {
 

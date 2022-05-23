@@ -5,13 +5,12 @@ import { Point, Triangle } from "../geometry/Point";
 import { PolyTools } from "../geometry/PolyTools";
 import { stroke } from "../brush/Stroke";
 import { distance, loopNoise, normRand, poly, randChoice, randGaussian } from "../Utils";
-import { Args } from "../brush/Args";
+import { Args, Tree01Args } from "../brush/Args";
 
 export class Tree {
 
     constructor(private Noise: PerlinNoise, private PolyTools: PolyTools) { }
-    tree01(x: number, y: number, args: Args = new Args()): string {
-        var args = args != undefined ? args : {};
+    tree01(x: number, y: number, args: Tree01Args = new Tree01Args()): string {
         var hei = args.hei != undefined ? args.hei : 50;
         var wid = args.wid != undefined ? args.wid : 3;
         var col = args.col != undefined ? args.col : "rgba(100,100,100,0.5)";

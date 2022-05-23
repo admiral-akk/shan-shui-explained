@@ -60,3 +60,10 @@ export class Args {
     bend?: (x: number) => number;
     constructor() { }
 }
+
+export class Tree01Args {
+    hei?: number = 50;
+    wid?: number = 3;
+    noi?: number = 0.5;
+    col?: string = "rgba(100,100,100,0.5)";
+}

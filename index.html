@@ -43,8 +43,7 @@
 
         <tr>
           <td>
-            <pre><input id = "AUTO_SCROLL" type="checkbox" 
-            onchange="UI.autoxcroll(parseFloat(document.getElementById('INC_STEP').value))">Auto-scroll</pre>
+            <pre><input id = "AUTO_SCROLL" type="checkbox" >Auto-scroll</pre>
           </td>
 
           <td></td>
@@ -81,14 +80,6 @@
     <div>
       <font id="SET_BTN.t"> &lt;/&gt; </font>
     </div>
-    <script>
-      window.addEventListener("scroll", function (e) {
-        document.getElementById("SOURCE_BTN").style.left = Math.max(
-          41,
-          77 - window.scrollX
-        );
-      });
-    </script>
   </div>
   <table>
     <tr>

@@ -6,6 +6,7 @@ import { Update } from "../Update";
 
 import { Man } from "../models/Man";
 import { Tree } from "../models/Tree";
+import { Args } from "../brush/Args";
 enum ObjectTypes {
     None,
     Water,
@@ -39,15 +40,8 @@ export class UI {
         this.update.update();
 
     }
-    constructor(private MEM: Memory, private update: Update, seed: string, Noise: PerlinNoise, private man: Man, private tree: Tree) {
-        window.addEventListener("scroll", (e: Event) => {
-            document.getElementById("SETTING")!.style.left = Math.max(
-                4,
-                40 - window.scrollX
-            ) + "px";
-        });
-
-
+    constructor(private MEM: Memory, private update: Update, seed: string,
+        Noise: PerlinNoise, private man: Man, private tree: Tree) {
         window.addEventListener('click', (ev: MouseEvent) => {
             const target = ev.target as HTMLElement;
             if (!target || target.id !== "SVG") {
@@ -98,7 +92,7 @@ export class UI {
     present() {
         var currScrollX = window.scrollX;
         var step = 1;
-        document.body.scrollTo(Math.max(0, this.pFrame - 10), window.scrollY);
+        //document.body.scrollTo(Math.max(0, this.pFrame - 10), window.scrollY);
 
         this.pFrame += step;
 
@@ -123,6 +117,12 @@ export class UI {
     private BuildBrushMenu() {
         const table = document.createElement('table');
         document.getElementById("BRUSH_MENU")!.appendChild(table);
+
+        const args = new Args();
+
+        args.ang = 10;
+
+        Object.keys(args).forEach(arg => { console.log(`arg: ${arg}`) })
 
         const tr = addRowToTable(table);
         const td = addDataToRow(tr);

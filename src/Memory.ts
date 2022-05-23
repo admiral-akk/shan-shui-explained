@@ -6,7 +6,7 @@ export class Memory {
     cwid = 512;
     cursx = 0;
     lasttick = 0;
-    windx = 3000;
+    windx = 800;
     windy = 800;
     planmtx: any[] = [];
 }
